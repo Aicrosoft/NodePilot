@@ -1,0 +1,399 @@
+/* ================= 浅色主题高可读性与提示/组件全套深度统一 ================= */
+
+/* 1. 悬浮提示框 (Tooltip) 纯白质感与高对比度文字 */
+[data-theme="light"] .info-icon .tooltip-box {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14), 0 2px 8px rgba(15, 23, 42, 0.06);
+    color: #334155;
+}
+
+[data-theme="light"] .tooltip-title {
+    color: #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .tooltip-section {
+    color: #334155;
+}
+
+[data-theme="light"] .tooltip-section strong {
+    color: #0f172a;
+}
+
+[data-theme="light"] .tooltip-section code {
+    background: #f1f5f9;
+    color: #0284c7;
+    border: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .weight-badge {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+}
+
+[data-theme="light"] .weight-badge.veto {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+/* 2. 表格与徽章体系 */
+[data-theme="light"] .nodes-table th,
+[data-theme="light"] .benchmark-table th {
+    color: #1e293b;
+    font-weight: 700;
+}
+
+[data-theme="light"] .node-score-pill {
+    background: #ecfdf5;
+    color: #047857;
+    border-color: #a7f3d0;
+}
+
+[data-theme="light"] .node-score-pill.low {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+[data-theme="light"] .status-avail {
+    background: #ecfdf5;
+    color: #047857;
+    border-color: #a7f3d0;
+}
+
+[data-theme="light"] .status-unavail {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+[data-theme="light"] .type-tag {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+[data-theme="light"] .metric-pill {
+    background: #f8fafc;
+    color: #334155;
+    border-color: #e2e8f0;
+}
+
+[data-theme="light"] .metric-pill b {
+    color: #0284c7;
+}
+
+[data-theme="light"] .diag-alert {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #991b1b;
+}
+
+/* 3. 按钮与机场卡片操作组件 */
+[data-theme="light"] .btn-danger {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+[data-theme="light"] .btn-danger:hover {
+    background: #fee2e2;
+    border-color: #ef4444;
+}
+
+[data-theme="light"] .node-count-btn {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+}
+
+[data-theme="light"] .node-count-btn:hover {
+    background: #d1fae5;
+    border-color: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+}
+
+[data-theme="light"] .node-count-btn.node-status-error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+[data-theme="light"] .node-count-btn.node-status-error:hover {
+    background: #fee2e2;
+    border-color: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
+}
+
+[data-theme="light"] .airport-error-badge {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+[data-theme="light"] .active-airport-badge {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+}
+
+[data-theme="light"] .source-tag.url {
+    background: #f0f9ff;
+    color: #0284c7;
+    border: 1px solid #bae6fd;
+}
+
+[data-theme="light"] .source-tag.file {
+    background: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fde68a;
+}
+
+[data-theme="light"] .airport-form-tip {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #991b1b;
+}
+
+[data-theme="light"] .airport-card-url {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+}
+
+[data-theme="light"] .btn-node-filter {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    color: #475569;
+}
+
+[data-theme="light"] .btn-node-filter:hover {
+    border-color: #0d9488;
+    color: #0d9488;
+    background: #f0fdfa;
+}
+
+[data-theme="light"] .btn-node-filter.active {
+    background: #ecfdf5;
+    border: 1px solid #10b981;
+    color: #047857;
+}
+
+/* 浅色主题侧边栏与舞台适配 */
+[data-theme="light"] .app-sidebar {
+    background: #f8fafc;
+    border-right-color: #e2e8f0;
+}
+
+[data-theme="light"] .sidebar-brand {
+    border-bottom-color: #e2e8f0;
+}
+
+[data-theme="light"] .nav-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #0f172a;
+}
+
+[data-theme="light"] .nav-item.active {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+[data-theme="light"] .sidebar-status-card {
+    background: #ffffff;
+    border-color: #e2e8f0;
+}
+
+[data-theme="light"] .benchmark-toolbar {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .stage-table-card {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="light"] .history-card {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+[data-theme="light"] .history-card-body {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+[data-theme="light"] .settings-card {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+[data-theme="light"] .probe-item {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+[data-theme="light"] .settings-section-block {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+[data-theme="light"] .setting-select {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+[data-theme="light"] .probe-endpoint {
+    background: #f1f5f9;
+    color: #0284c7;
+}
+
+[data-theme="light"] .probe-info-val code {
+    background: #f1f5f9;
+    color: #0284c7;
+}
+
+[data-theme="light"] .drawer-backdrop {
+    background: rgba(15, 23, 42, 0.28);
+}
+
+[data-theme="light"] .drawer-panel {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: -10px 0 35px rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .drawer-header,
+[data-theme="light"] .drawer-footer,
+[data-theme="light"] .modal-header,
+[data-theme="light"] .modal-footer {
+    background: #ffffff;
+    border-color: #e2e8f0;
+}
+
+[data-theme="light"] .modal-content {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: -10px 0 35px rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .modal-dialog-box {
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15) !important;
+}
+
+[data-theme="light"] .drawer-preview-list-box,
+[data-theme="light"] .drawer-nodes-table-box {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+[data-theme="light"] #modal-node-filter .filter-library-panel {
+    background: #ffffff;
+    box-shadow: -8px 0 24px rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .filter-item-tag {
+    background: rgba(0, 0, 0, 0.05);
+    color: #64748b;
+}
+
+[data-theme="light"] .filter-library-item {
+    background: #ffffff;
+    border-color: #e2e8f0;
+}
+
+[data-theme="light"] .filter-library-item:hover {
+    background: #f8fafc;
+    border-color: #059669;
+}
+
+[data-theme="light"] .filter-library-item.active {
+    background: #ecfdf5;
+    border-color: #059669;
+}
+
+[data-theme="light"] .filter-item-regex-summary {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+[data-theme="light"] .filter-item-btn:hover {
+    background: rgba(15, 23, 42, 0.08);
+    color: #0f172a;
+}
+
+[data-theme="light"] .sidebar-collapse-btn:hover {
+    background: rgba(15, 23, 42, 0.08);
+    color: #0f172a;
+}
+
+[data-theme="light"] .sidebar-issue-btn:hover {
+    background: rgba(15, 23, 42, 0.08);
+    color: var(--accent-green, #10b981);
+}
+
+[data-theme="light"] .score-box.score-level-excellent {
+    background: #ecfdf5;
+    color: #047857;
+    border-color: #a7f3d0;
+}
+
+[data-theme="light"] .score-box.score-level-good {
+    background: #f0f9ff;
+    color: #0369a1;
+    border-color: #bae6fd;
+}
+
+[data-theme="light"] .score-box.score-level-pass {
+    background: #fffbeb;
+    color: #b45309;
+    border-color: #fde68a;
+}
+
+[data-theme="light"] .score-box.score-level-low {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+[data-theme="light"] .settings-nav-tab.active {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+[data-theme="light"] .probe-endpoint-inline {
+    background: #f1f5f9;
+    color: #0369a1;
+    border-color: #cbd5e1;
+}
+
+[data-theme="light"] .probe-spec-table-box {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+[data-theme="light"] .probe-spec-header {
+    background: #f8fafc;
+    border-bottom-color: #e2e8f0;
+}
+
+[data-theme="light"] .probe-spec-table td.col-item {
+    background: #f8fafc;
+    border-right-color: #e2e8f0;
+}
+
+[data-theme="light"] .probe-spec-table tr {
+    border-bottom-color: #e2e8f0;
+}
+
+[data-theme="light"] .probe-spec-table tr:hover {
+    background: #f1f5f9;
+}

@@ -1,0 +1,72 @@
+name: "🐛 Bug 报告 (Bug Report)"
+description: "提交你在使用 NodePilot 过程中遇到的异常、错误或崩溃问题"
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你帮助 NodePilot 变得更好！在提交 Bug 报告前，请先确认该问题尚未被他人提交，并尽可能提供详尽的上下文与复现步骤。
+
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: "问题描述 (Problem Description)"
+      description: "清晰简要地描述你遇到的 Bug 现象及实际表现。"
+      placeholder: "例如：在导入 Clash 订阅后点击全量测速时，界面卡在 50% 并提示网络连接超时..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: "复现步骤 (Steps to Reproduce)"
+      description: "请提供能重现该问题的最小步骤。"
+      value: |
+        1. 打开 NodePilot 客户端
+        2. 点击导航栏中的 '...'
+        3. 输入/操作 '...'
+        4. 观察到异常现象
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "期望行为 (Expected Behavior)"
+      description: "你期望应当发生什么正常的交互或结果。"
+      placeholder: "例如：测速任务应该优雅超时并标记节点为不可用，而不是导致界面挂起。"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: "操作系统环境 (Operating System)"
+      options:
+        - "macOS (Apple Silicon / M 系列)"
+        - "macOS (Intel x86_64)"
+        - "Windows 11 (64-bit)"
+        - "Windows 10 (64-bit)"
+        - "Linux (Ubuntu / Debian)"
+        - "Linux (Arch / Fedora / 其他)"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: "客户端版本 (App Version)"
+      description: "请提供出现问题的软件版本号（可在关于或设置页面查看）。"
+      placeholder: "例如：v0.1.26111501 或 从源码最新构建"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs-and-screenshots
+    attributes:
+      label: "日志与截图 (Logs & Screenshots)"
+      description: "若有运行时报错日志、控制台输出或截图，请在此粘贴或拖入图片。"
+      placeholder: "可粘贴关键报错堆栈信息或拖拽图片..."
+    validations:
+      required: false

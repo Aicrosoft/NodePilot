@@ -1,0 +1,14 @@
+/**
+ * NodePilot 主样式表
+ * 模块化聚合入口 (通过 @import 组织分层架构)
+ * 遵循高内聚低耦合规范，各业务领域样式分别维护在 css/ 目录下
+ */
+
+@import "./css/variables.css";
+@import "./css/base.css";
+@import "./css/sidebar.css";
+@import "./css/benchmark.css";
+@import "./css/airports.css";
+@import "./css/history_chart.css";
+@import "./css/components.css";
+@import "./css/themes.css";

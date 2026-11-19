@@ -1,0 +1,39 @@
+<!-- Modal Drawer: Subscription Troubleshooting & Diagnostics (Slide-over from right) -->
+<div id="modal-error-diag" class="modal hidden" style="z-index: 20003;">
+    <div class="modal-content modal-drawer-panel modal-drawer-diag">
+        <div class="modal-header">
+            <h3 id="error-diag-title" class="drawer-title"
+                data-i18n="diag.modal_title"
+                style="font-size: 1.05rem; color: var(--accent-red); display: flex; align-items: center; gap: 8px;">
+                ⚠️ Subscription Diagnostics & Troubleshooting
+            </h3>
+            <button id="error-diag-close" class="btn-close" title="Close drawer" data-i18n-title="diag.btn_close_title">×</button>
+        </div>
+        <div class="modal-body error-diag-body" style="padding: 20px 22px; flex: 1; overflow-y: auto;">
+            <div class="diag-field">
+                <span class="diag-label" data-i18n="diag.label_airport_name">Airport Name:</span>
+                <span id="diag-airport-name" class="diag-val" style="font-weight: 600;">-</span>
+            </div>
+            <div class="diag-field">
+                <span class="diag-label" data-i18n="diag.label_sub_url">Subscription URL:</span>
+                <div id="diag-airport-url" class="diag-val code-text"
+                    style="word-break: break-all;">-</div>
+            </div>
+            <div class="diag-field">
+                <span class="diag-label" data-i18n="diag.label_analysis">Diagnostics & Troubleshooting Advice:</span>
+                <div id="diag-analysis" class="diag-alert">-</div>
+            </div>
+            <div class="diag-field">
+                <span class="diag-label" data-i18n="diag.label_raw_error">Raw System Error:</span>
+                <div id="diag-raw-error" class="diag-val code-text"
+                    style="color: var(--accent-red); font-size: 0.78rem;">-</div>
+            </div>
+        </div>
+        <div class="modal-footer"
+            style="padding: 16px 22px; border-top: 1px solid var(--border-subtle); background: var(--bg-card); display: flex; justify-content: flex-end; gap: 10px; flex-shrink: 0;">
+            <button id="diag-btn-edit" class="btn btn-secondary" type="button" data-i18n="diag.btn_edit_url">✏️ Edit URL</button>
+            <button id="diag-btn-retry" class="btn btn-primary" type="button" data-i18n="diag.btn_retry">🔄 Retry</button>
+            <button id="diag-btn-close" class="btn btn-secondary" type="button" data-i18n="diag.btn_close">Close</button>
+        </div>
+    </div>
+</div>

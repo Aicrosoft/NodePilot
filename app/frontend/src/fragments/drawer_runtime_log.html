@@ -1,0 +1,53 @@
+<!-- Runtime Test Logs Drawer (Slide-over Drawer) -->
+<div id="modal-runtime-log" class="drawer-overlay hidden" style="z-index: 10005;">
+    <div class="drawer-backdrop" id="drawer-runtime-log-backdrop"></div>
+    <div id="drawer-runtime-log" class="drawer-panel drawer-right drawer-panel-wide" style="width: 760px; max-width: 90vw;">
+        <div class="drawer-header" style="border-bottom: 1px solid var(--border-color); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.25rem;">📋</span>
+                <div>
+                    <h3 style="margin: 0; font-size: 1rem; font-weight: 600; color: var(--text-main);" data-i18n="runtime_log.title">Test Logs</h3>
+                    <span style="font-size: 0.72rem; color: var(--text-muted);" data-i18n="runtime_log.subtitle">Monitor proxy handshakes, TLS tunnels, and probe failure chains in real time</span>
+                </div>
+            </div>
+            <button id="btn-close-runtime-log" class="btn-icon btn-close" title="Close" data-i18n-title="modal.close" aria-label="Close" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+        </div>
+
+        <!-- Control Toolbar -->
+        <div style="padding: 10px 20px; background: var(--bg-card); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 8px;">
+                <button id="btn-refresh-runtime-log" class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.78rem;" data-i18n="runtime_log.btn_refresh">
+                    🔄 Refresh
+                </button>
+                <button id="btn-drawer-open-log-dir" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.78rem;" data-i18n="runtime_log.btn_open_dir">
+                    📂 Open Folder
+                </button>
+                <button id="btn-copy-runtime-log" class="btn btn-outline" style="padding: 5px 12px; font-size: 0.78rem;" data-i18n="runtime_log.btn_copy_all">
+                    📋 Copy All
+                </button>
+                <button id="btn-copy-log-filepath" class="btn btn-outline" style="padding: 5px 12px; font-size: 0.78rem;" data-i18n="runtime_log.btn_copy_path">
+                    📄 Copy Path
+                </button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <label style="font-size: 0.75rem; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                    <input type="checkbox" id="chk-auto-refresh-log" checked /> <span data-i18n="runtime_log.auto_refresh">Auto-refresh (1.5s)</span>
+                </label>
+                <label style="font-size: 0.75rem; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                    <input type="checkbox" id="chk-auto-scroll-log" checked /> <span data-i18n="runtime_log.auto_scroll">Auto-scroll to bottom</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Log Content Display Area -->
+        <div class="drawer-body" style="padding: 14px 20px; flex: 1; overflow-y: auto; background: #0b0f19;">
+            <pre id="runtime-log-content" style="margin: 0; font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.76rem; line-height: 1.5; color: #cbd5e1; white-space: pre-wrap; word-break: break-all;" data-i18n="runtime_log.loading">Loading runtime logs...</pre>
+        </div>
+
+        <!-- Footer Status -->
+        <div class="drawer-footer" style="padding: 10px 20px; border-top: 1px solid var(--border-color); background: var(--bg-card); display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: var(--text-muted);">
+            <span id="runtime-log-path-display" data-i18n="runtime_log.detecting_path">Log File: Detecting...</span>
+            <span id="runtime-log-time-display" data-i18n="runtime_log.ready">Ready</span>
+        </div>
+    </div>
+</div>

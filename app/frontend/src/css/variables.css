@@ -1,0 +1,83 @@
+/* ================= 主题变量定义 ================= */
+
+:root,
+[data-theme="dark"] {
+    /* 深色主题 (深邃雷达座舱，呼应图标暗部与经纬夜景) */
+    --bg-dark: #070d18;
+    --bg-card: #0f172a;
+    --bg-card-hover: #1e293b;
+    --card-sub-bg: #0b1324;
+    --border-color: rgba(56, 189, 248, 0.16);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* 品牌主色：与图标翡翠绿图钉与极光冰蓝完全呼应 */
+    --accent-primary: #10b981;
+    --accent-primary-hover: #059669;
+    --accent-primary-active: #047857;
+    --accent-secondary: #0ea5e9;
+    --accent-cyan: #06b6d4;
+    --accent-green: #10b981;
+    --accent-yellow: #f59e0b;
+    --accent-red: #ef4444;
+
+    /* 按钮与渐变 */
+    --btn-primary-grad: linear-gradient(135deg, #10b981 0%, #0284c7 100%);
+    --btn-primary-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    --brand-text-grad: linear-gradient(90deg, #ffffff 0%, #34d399 55%, #38bdf8 100%);
+
+    /* 控件背景 */
+    --input-bg: #070e1c;
+    --table-header-bg: #0b1324;
+    --table-row-hover: rgba(16, 185, 129, 0.05);
+    --code-bg: rgba(15, 23, 42, 0.7);
+    --modal-bg: #0f172a;
+    --modal-overlay: rgba(0, 0, 0, 0.75);
+    --progress-bg: #090d16;
+    --tooltip-bg: #080e1b;
+}
+
+[data-theme="light"] {
+    /* 浅色主题 (冰川白、淡冰蓝经纬线质感，呼应图标外壳与高光) */
+    --bg-dark: #f0f4f9;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+    --card-sub-bg: #f8fafc;
+    --border-color: #cbd5e1;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+
+    /* 浅色模式强化对比度的翡翠绿与海蓝 */
+    --accent-primary: #059669;
+    --accent-primary-hover: #047857;
+    --accent-primary-active: #065f46;
+    --accent-secondary: #0284c7;
+    --accent-cyan: #0891b2;
+    --accent-green: #059669;
+    --accent-yellow: #d97706;
+    --accent-red: #dc2626;
+
+    /* 按钮与渐变 */
+    --btn-primary-grad: linear-gradient(135deg, #10b981 0%, #0284c7 100%);
+    --btn-primary-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+    --header-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    --brand-text-grad: linear-gradient(90deg, #0f172a 0%, #059669 60%, #0284c7 100%);
+
+    /* 控件背景 */
+    --input-bg: #ffffff;
+    --table-header-bg: #f8fafc;
+    --table-row-hover: rgba(16, 185, 129, 0.06);
+    --code-bg: #f1f5f9;
+    --modal-bg: #ffffff;
+    --modal-overlay: rgba(15, 23, 42, 0.45);
+    --progress-bg: #e2e8f0;
+    --tooltip-bg: #ffffff;
+}
+

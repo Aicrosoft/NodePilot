@@ -1,0 +1,97 @@
+<!-- Slide-over Drawer: View all node details list (Full height on right side, independent property columns with metric sorting and export) -->
+<div id="modal-nodes" class="drawer-overlay hidden" style="z-index: 10003;">
+    <div class="drawer-backdrop" id="modal-nodes-backdrop"></div>
+    <div class="drawer-panel drawer-right drawer-panel-stage">
+        <div class="drawer-header">
+            <h3 id="modal-nodes-title" class="drawer-title" data-i18n="nodes_modal.title_default">📋 Node Details List</h3>
+            <button id="modal-nodes-close" class="btn-close" title="Close drawer and return to workspace" data-i18n-title="nodes_modal.btn_close_drawer">×</button>
+        </div>
+        <div class="drawer-body drawer-nodes-body">
+            <div class="nodes-filter-bar" style="flex-shrink: 0; margin-bottom: 0;">
+                <input type="text" id="node-filter-input"
+                    placeholder="🔍 Filter node name, protocol, server IP or port..."
+                    data-i18n-placeholder="nodes_modal.search_placeholder"
+                    class="form-input" style="width: 100%;" />
+            </div>
+            <div class="drawer-nodes-table-box table-wrapper">
+                <table class="airport-table nodes-table benchmark-table" id="modal-nodes-table">
+                    <thead>
+                        <tr>
+                            <th data-col="select" style="width: 42px; min-width: 42px; text-align: center;">
+                                <input type="checkbox" id="nodes-select-all" title="Select / deselect all visible nodes" data-i18n-title="nodes_modal.select_all_title" style="cursor: pointer;" />
+                            </th>
+                            <th data-col="index" class="sortable-th" data-sort="index" style="width: 44px; min-width: 40px; text-align: center;">
+                                # <span class="sort-indicator"></span>
+                            </th>
+                            <th data-col="node_name" class="sortable-th" data-sort="name" style="width: 220px; min-width: 150px;">
+                                <span data-i18n="nodes_modal.col_node_name">Node Name</span> <span class="sort-indicator"></span>
+                            </th>
+                            <th data-col="type" class="sortable-th" data-sort="type" style="width: 85px; min-width: 75px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_type">Protocol</span> <span class="sort-indicator"></span>
+                            </th>
+                            <th data-col="server" class="sortable-th" data-sort="server" style="width: 160px; min-width: 130px;">
+                                <span data-i18n="nodes_modal.col_server">Server:Port</span> <span class="sort-indicator"></span>
+                            </th>
+                            <th data-col="ping" class="sortable-th" data-sort="ping" style="width: 95px; min-width: 80px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_ping">Ping</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="ping">ⓘ</span>
+                            </th>
+                            <th data-col="score" class="sortable-th" data-sort="score" style="width: 90px; min-width: 75px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_score">Score</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="score">ⓘ</span>
+                            </th>
+                            <th data-col="availability" class="sortable-th" data-sort="availability" style="width: 120px; min-width: 100px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_status">Availability</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="availability">ⓘ</span>
+                            </th>
+                            <th data-col="ttfb" class="sortable-th" data-sort="ttfb" style="width: 90px; min-width: 75px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_ttfb">TTFB</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="ttfb">ⓘ</span>
+                            </th>
+                            <th data-col="ttft" class="sortable-th" data-sort="ttft" style="width: 90px; min-width: 75px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_ttft">TTFT</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="ttft">ⓘ</span>
+                            </th>
+                            <th data-col="tps" class="sortable-th" data-sort="tps" style="width: 105px; min-width: 85px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_tps">TPS</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="tps">ⓘ</span>
+                            </th>
+                            <th data-col="jitter" class="sortable-th" data-sort="jitter" style="width: 125px; min-width: 95px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_jitter">Jitter</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="jitter">ⓘ</span>
+                            </th>
+                            <th data-col="ingress" class="sortable-th" data-sort="ingress" style="width: 135px; min-width: 110px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_ingress">Ingress</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="ingress">ⓘ</span>
+                            </th>
+                            <th data-col="time" class="sortable-th" data-sort="time" style="width: 150px; min-width: 120px; text-align: center;">
+                                <span data-i18n="nodes_modal.col_time">Test Time</span> <span class="sort-indicator"></span>
+                                <span class="info-icon" data-metric="time">ⓘ</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="nodes-list-body">
+                        <!-- Dynamic rendering -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="drawer-footer">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span id="nodes-filter-count" class="tip-text" style="font-size: 0.82rem;" data-i18n="nodes_modal.count_total">Total 0 nodes</span>
+                <span id="nodes-selected-count" style="font-size: 0.82rem; font-weight: 600; color: var(--accent-primary);">Selected: 0</span>
+                <button id="btn-export-nodes" class="btn btn-secondary btn-xs" type="button"
+                    style="padding: 4px 10px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;"
+                    title="Export selected nodes to Clash (YAML) or Shadowrocket (URI/Base64)"
+                    data-i18n="nodes_modal.btn_export"
+                    data-i18n-title="nodes_modal.btn_export_title">
+                    📤 Export Selected
+                </button>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <button id="modal-nodes-ok" class="btn btn-secondary" type="button" data-i18n="nodes_modal.btn_close">Close</button>
+                <button id="modal-nodes-apply" class="btn btn-primary" type="button" data-i18n="nodes_modal.btn_apply_benchmark">⚡ Load as Current Test Nodes</button>
+            </div>
+        </div>
+    </div>
+</div>

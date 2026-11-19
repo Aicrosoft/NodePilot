@@ -1,0 +1,86 @@
+name: NodePilot CI
+
+# ==============================================================================
+# NodePilot PR 与 Main 分支代码质量与测试门禁
+# ==============================================================================
+
+on:
+  push:
+    branches:
+      - main
+      - 'dev/**'
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.azure-pipelines/**'
+      - 'sync-github.sh'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.azure-pipelines/**'
+      - 'sync-github.sh'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-lint:
+    name: Run Unit Tests & Golden Contract Assertions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Go Environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          check-latest: true
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Test Core Engine & Golden Contracts
+        run: |
+          echo "🧪 Running Engine Unit Tests and Golden Contracts..."
+          cd engine
+          go test -v -race ./...
+
+      - name: Test Go Desktop App Adapter
+        run: |
+          echo "🧪 Running Desktop Adapter Unit Tests..."
+          cd app
+          go test -v ./...
+
+      - name: Test Frontend Components
+        run: |
+          echo "🧪 Running Frontend Unit Tests..."
+          cd app/frontend
+          npm test
+
+  build-smoke-test:
+    name: Build Engine CLI Smoke Test
+    needs: test-and-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Compile Engine CLI Binary
+        run: |
+          echo "🔨 Compiling Engine CLI Smoke Test..."
+          mkdir -p bin
+          cd engine
+          go build -v -o ../bin/nodepilot-engine main.go
+          ../bin/nodepilot-engine --help

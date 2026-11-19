@@ -1,0 +1,24 @@
+<!-- Centered Compact Modal: Message Operations & Confirmations (Non-list, non-form alert dialog) -->
+<div id="modal-confirm" class="modal modal-center hidden" style="z-index: 20002;">
+    <div class="modal-content modal-dialog-box modal-confirm-box">
+        <div class="modal-header">
+            <h3 id="confirm-title"
+                data-i18n="modal.default_title"
+                style="font-size: 1.05rem; color: var(--accent-red); display: flex; align-items: center; gap: 8px;">
+                ⚠️ Operation Confirmation
+            </h3>
+            <button id="confirm-btn-close" class="btn-close" title="Close" data-i18n-title="modal.close">×</button>
+        </div>
+        <div class="modal-body" style="padding: 20px 22px;">
+            <p id="confirm-message"
+                data-i18n="modal.default_message"
+                style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin: 0;">
+                Are you sure you want to proceed with this operation?
+            </p>
+        </div>
+        <div class="modal-footer" style="padding: 14px 22px; border-top: 1px solid var(--border-subtle); background: var(--bg-card); display: flex; justify-content: flex-end; gap: 10px; border-radius: 0 0 12px 12px;">
+            <button id="confirm-btn-cancel" class="btn btn-secondary" type="button" data-i18n="modal.cancel">Cancel</button>
+            <button id="confirm-btn-ok" class="btn btn-danger" type="button" data-i18n="modal.confirm">Confirm</button>
+        </div>
+    </div>
+</div>

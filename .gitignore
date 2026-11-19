@@ -1,0 +1,52 @@
+# Binaries and build artifacts
+bin/
+release/
+dist/
+node_modules/
+app/build/bin/
+/app/app
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Local databases, caches & runtime storage
+*.db
+*.sqlite*
+
+# Test and coverage artifacts
+*.test
+*.out
+*.log
+logs/*.log
+
+# Environment & Secrets (Universal Baseline)
+*.env*
+!*.env.example
+*.pem
+*.key
+
+# Additional certificates & tokens
+*.crt
+*.cer
+.npmrc
+*credentials*.json
+
+# Native App Signing Certificates & Keystores (Desktop & Mobile)
+*.p12
+*.p8
+*.mobileprovision
+*.keystore
+*.jks
+*.der
+
+# macOS system files
+.DS_Store
+
+# IDE configs
+.idea/
+.vscode/
+.build_tmp
+docs/tasks/
+

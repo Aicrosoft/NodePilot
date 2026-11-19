@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 社区与架构讨论 (GitHub Discussions)"
+    url: "https://github.com/Aicrosoft/NodePilot/discussions"
+    about: "关于使用方法、架构探讨或常规疑问，请前往 Discussions 交流。"
+  - name: "🔒 安全漏洞报告 (Security Policy)"
+    url: "https://github.com/Aicrosoft/NodePilot/security/policy"
+    about: "若发现严重安全漏洞，请通过负责任的披露机制向团队私密汇报。"

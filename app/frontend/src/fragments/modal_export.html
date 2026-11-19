@@ -1,0 +1,24 @@
+<!-- Modal Drawer: Export Configuration (Supports Clash / Mihomo / Shadowrocket format switching and download, slide-over from right) -->
+<div id="modal" class="modal hidden" style="z-index: 20000;">
+    <div class="modal-content modal-drawer-panel modal-drawer-export">
+        <div class="modal-header">
+            <h3 id="modal-title" class="drawer-title" data-i18n="export.modal_title_drawer">📤 Export Configuration</h3>
+            <button id="modal-close" class="btn-close" title="Close" data-i18n-title="modal.close">×</button>
+        </div>
+        <div class="modal-body" style="display: flex; flex-direction: column; flex: 1; padding: 18px 22px; gap: 12px; overflow: hidden;">
+            <div id="export-tabs-bar" class="tabs hidden" style="margin-bottom: 4px; border-bottom: 1px solid var(--border-subtle); display: none;">
+                <button class="tab-btn active" data-fmt="clash" type="button" data-i18n="export.tab_clash">⚡ Clash / Mihomo (YAML)</button>
+                <button class="tab-btn" data-fmt="uri" type="button" data-i18n="export.tab_uri">📱 Shadowrocket Links</button>
+                <button class="tab-btn" data-fmt="base64" type="button" data-i18n="export.tab_base64">🔒 Universal (Base64)</button>
+            </div>
+            <textarea id="modal-text" readonly style="flex: 1; width: 100%; min-height: 280px; font-family: monospace; font-size: 0.82rem; line-height: 1.5;"></textarea>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 22px; border-top: 1px solid var(--border-subtle); background: var(--bg-card); flex-shrink: 0;">
+            <span id="modal-export-info" style="font-size: 0.8rem; color: var(--text-secondary);"></span>
+            <div style="display: flex; gap: 10px;">
+                <button id="btn-download-export" class="btn btn-secondary" type="button" data-i18n="export.btn_download">💾 Download File</button>
+                <button id="btn-copy" class="btn btn-primary" type="button" data-i18n="export.btn_copy">📋 Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+</div>

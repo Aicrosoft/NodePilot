@@ -1,0 +1,44 @@
+name: "💡 功能建议 (Feature Request)"
+description: "为 NodePilot 提出新功能创意、协议支持或体验改善建议"
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        欢迎提出有价值的想法与特性建议！请阐述你的使用痛点以及期望的具体方案。
+
+  - type: textarea
+    id: problem-or-painpoint
+    attributes:
+      label: "你的痛点是什么？(Pain Point)"
+      description: "描述你在什么场景下遇到了什么不便，为什么需要这个新功能。"
+      placeholder: "例如：在管理大量节点时，希望能够按地域延迟一键生成分组..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: "期望的解决方案 (Proposed Solution)"
+      description: "清晰描述你期望 NodePilot 如何实现这一能力或提供何种交互。"
+      placeholder: "例如：在节点列表顶部添加'按延迟分组导出'按钮，支持一键生成 Clash 分组配置..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives-considered
+    attributes:
+      label: "考虑过的替代方案 (Alternatives Considered)"
+      description: "是否有其他临时解决办法或替代软件的参考设计？"
+      placeholder: "可选：例如参考了其他客户端的实现方式..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "补充信息与原型图 (Additional Context)"
+      description: "任何有助于理解该特性的上下文、UI 草图或原型参考。"
+    validations:
+      required: false

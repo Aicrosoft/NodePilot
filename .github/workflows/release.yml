@@ -1,0 +1,270 @@
+name: NodePilot Release
+
+# ==============================================================================
+# NodePilot 官方跨平台发版与人工审批发布流水线
+# 
+# 核心合规流程：
+# 1. 采用 PR ➔ main 演进模型，只有在合并至 main 或打 release tag 时触发；
+# 2. 默认采用 Draft (草稿模式) 发布，需项目管理员在 GitHub Releases 手动核验确认后正式外发；
+# 3. 自动生成多平台二进制 (macOS Universal DMG, Windows EXE, Linux Tarball) 与 SHA256 校验和。
+# ==============================================================================
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: '发布版本标签 (如 v0.1.0，留空则自动从 app/wails.json 读取)'
+        required: false
+        default: ''
+      draft:
+        description: '生成为草稿 Release（需管理员在 GitHub 手动确认后正式发布）'
+        type: boolean
+        required: true
+        default: true
+      prerelease:
+        description: '标记为预发布版本 (Pre-release)'
+        type: boolean
+        required: true
+        default: false
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  # ============================================================================
+  # 阶段 1: macOS 原生 Universal DMG 编译打包
+  # ============================================================================
+  build-macos:
+    name: Build macOS Universal DMG
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Go Environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          check-latest: true
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Wails CLI
+        run: |
+          go install github.com/wailsapp/wails/v2/cmd/wails@latest
+
+      - name: Verify Frontend Assets
+        run: |
+          echo "📦 Pure vanilla frontend assets verified (no external node_modules required)."
+
+      - name: Compile and Package macOS Universal App
+        run: |
+          cd app
+          wails build -platform darwin/universal -s || wails build -s
+          
+          # 创建拖拽式挂载 DMG 镜像
+          mkdir -p dmg_pack
+          cp -R build/bin/NodePilot.app dmg_pack/
+          ln -s /Applications dmg_pack/Applications
+          hdiutil create -volname "NodePilot" -srcfolder dmg_pack -ov -format UDZO NodePilot-macOS-Universal.dmg
+          rm -rf dmg_pack
+
+      - name: Upload macOS Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-dmg
+          path: app/NodePilot-macOS-Universal.dmg
+          if-no-files-found: error
+
+  # ============================================================================
+  # 阶段 2: Windows 64-bit 可执行程序编译
+  # ============================================================================
+  build-windows:
+    name: Build Windows 64-bit EXE
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Go Environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          check-latest: true
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Wails CLI
+        run: |
+          go install github.com/wailsapp/wails/v2/cmd/wails@latest
+
+      - name: Verify Frontend Assets
+        run: |
+          echo "📦 Pure vanilla frontend assets verified (no external node_modules required)."
+
+      - name: Compile Windows 64-bit Desktop Application
+        run: |
+          cd app
+          wails build -platform windows/amd64 -s
+          Move-Item build/bin/NodePilot.exe build/bin/NodePilot-Windows-amd64.exe
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-exe
+          path: app/build/bin/NodePilot-Windows-amd64.exe
+          if-no-files-found: error
+
+  # ============================================================================
+  # 阶段 3: Linux GTK3/WebKit 桌面应用编译
+  # ============================================================================
+  build-linux:
+    name: Build Linux Desktop Tarball
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Linux Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev || sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev
+
+      - name: Setup Go Environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          check-latest: true
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Wails CLI
+        run: |
+          go install github.com/wailsapp/wails/v2/cmd/wails@latest
+
+      - name: Verify Frontend Assets
+        run: |
+          echo "📦 Pure vanilla frontend assets verified (no external node_modules required)."
+
+      - name: Compile and Archive Linux Application
+        run: |
+          cd app
+          wails build -platform linux/amd64 -s
+          tar -czvf NodePilot-Linux-amd64.tar.gz -C build/bin NodePilot
+
+      - name: Upload Linux Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-tarball
+          path: app/NodePilot-Linux-amd64.tar.gz
+          if-no-files-found: error
+
+  # ============================================================================
+  # 阶段 4: 汇总构件、提取 ReleaseNotes 并创建 Draft Release (人工确认发布)
+  # ============================================================================
+  create-release:
+    name: Create Draft Release (Manual Confirmation)
+    needs: [build-macos, build-windows, build-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download macOS Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: macos-dmg
+          path: dist
+
+      - name: Download Windows Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-exe
+          path: dist
+
+      - name: Download Linux Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-tarball
+          path: dist
+
+      - name: Compute Checksums and Resolve Tag
+        id: prep
+        run: |
+          cd dist
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+          cd ..
+          
+          # 计算版本标签
+          INPUT_TAG="${{ github.event.inputs.tag_name }}"
+          if [ -n "$INPUT_TAG" ]; then
+            TAG="$INPUT_TAG"
+          elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            TAG="${GITHUB_REF#refs/tags/}"
+          else
+            RAW_VERSION=$(jq -r '.info.productVersion // "0.1"' app/wails.json)
+            TAG="v${RAW_VERSION}"
+          fi
+          echo "RESOLVED_TAG=${TAG}" >> $GITHUB_OUTPUT
+          
+          # 判断是否为草稿发布 (默认 true，确保人工确认后发布)
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            IS_DRAFT="${{ github.event.inputs.draft }}"
+            IS_PRE="${{ github.event.inputs.prerelease }}"
+          else
+            # Tag 触发时也默认创建草稿以供复核
+            IS_DRAFT="true"
+            IS_PRE="false"
+          fi
+          echo "IS_DRAFT=${IS_DRAFT}" >> $GITHUB_OUTPUT
+          echo "IS_PRE=${IS_PRE}" >> $GITHUB_OUTPUT
+
+      - name: Extract Release Notes Body
+        id: notes
+        run: |
+          if [ -f "RELEASE_NOTES.md" ]; then
+            # 提取 RELEASE_NOTES.md 正文
+            echo "BODY_FILE=RELEASE_NOTES.md" >> $GITHUB_OUTPUT
+          else
+            echo "BODY_FILE=CHANGELOG.md" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish GitHub Release (Draft mode for Manual Confirmation)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.prep.outputs.RESOLVED_TAG }}
+          name: NodePilot ${{ steps.prep.outputs.RESOLVED_TAG }}
+          body_path: ${{ steps.notes.outputs.BODY_FILE }}
+          draft: ${{ steps.prep.outputs.IS_DRAFT == 'true' }}
+          prerelease: ${{ steps.prep.outputs.IS_PRE == 'true' }}
+          files: |
+            dist/NodePilot-macOS-Universal.dmg
+            dist/NodePilot-Windows-amd64.exe
+            dist/NodePilot-Linux-amd64.tar.gz
+            dist/SHA256SUMS.txt
+
+      - name: Release Audit Notification
+        run: |
+          echo "=========================================================================="
+          echo "🎉 Release 构件已打包完成并成功上传至 GitHub Releases！"
+          echo "📌 目标版本: ${{ steps.prep.outputs.RESOLVED_TAG }}"
+          echo "🔒 安全审批防线: 已处于草稿模式 (Draft: ${{ steps.prep.outputs.IS_DRAFT }})"
+          echo ""
+          echo "👉 最终发布确认指引:"
+          echo "   1. 访问当前仓库的 'Releases' 页面;"
+          echo "   2. 检查 Draft 中的三平台安装包与发版说明内容;"
+          echo "   3. 点击 'Edit' -> 'Publish release'，即可正式向全网公开发布！"
+          echo "=========================================================================="

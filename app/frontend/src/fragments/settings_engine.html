@@ -1,0 +1,291 @@
+                                            <div class="settings-card engine-params-card">
+                                                <div class="card-header-flex">
+                                                    <h3 class="settings-card-title"
+                                                        style="margin-bottom:0; padding-bottom:0; border-bottom:none;"
+                                                        data-i18n="settings.card_engine_title">
+                                                        🛠️ Engine Default Parameters & Optimization Rules
+                                                    </h3>
+                                                    <button id="btn-reset-settings" class="btn btn-secondary btn-xs"
+                                                        type="button" title="Restore all preferences to recommended defaults"
+                                                        data-i18n="settings.btn_reset"
+                                                        data-i18n-title="settings.btn_reset_title">
+                                                        🔄 Restore Defaults
+                                                    </button>
+                                                </div>
+                                                <p style="font-size: 0.78rem; color: var(--text-muted); margin: 8px 0 16px 0; line-height: 1.5;"
+                                                    data-i18n="settings.card_engine_desc">
+                                                    Changes are automatically saved and synced to the benchmark console and Clash exporter:
+                                                </p>
+
+                                                <div class="engine-params-grid">
+                                                    <!-- Group 0: General UI & Language -->
+                                                    <div class="settings-section-block">
+                                                        <div class="section-block-title"
+                                                            data-i18n="settings.group_general">🌐 General & Language</div>
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.lang_label">Display Language:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.lang_sub">Set UI display language. Supports Follow System and instant zero-reload switching</span>
+                                                            </div>
+                                                            <select id="settings-display-lang"
+                                                                class="form-input setting-select">
+                                                                <option value="auto" data-i18n="settings.lang_auto">💻 Follow System</option>
+                                                                <option value="zh" data-i18n="settings.lang_zh">简体中文 (Simplified Chinese)</option>
+                                                                <option value="en" data-i18n="settings.lang_en">English (US)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Group 1: Concurrency & Timeout Control -->
+                                                    <div class="settings-section-block">
+                                                        <div class="section-block-title"
+                                                            data-i18n="settings.group_concurrency">⚡ Concurrency & Timeout</div>
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.workers_label">Concurrent Workers Pool:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.workers_sub">Controls parallel worker threads for nodes and probes (Recommended: 6)</span>
+                                                            </div>
+                                                            <input type="number" id="settings-default-workers" value="6"
+                                                                min="1" max="20" class="form-input setting-input-sm" />
+                                                        </div>
+
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.timeout_label">Single Probe Timeout:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.timeout_sub">Maximum seconds to wait per HTTP/HTTPS probe request</span>
+                                                            </div>
+                                                            <div class="input-unit-group">
+                                                                <input type="number" id="settings-default-timeout"
+                                                                    value="10" min="3" max="30"
+                                                                    class="form-input setting-input-sm" />
+                                                                <span class="unit-text"
+                                                                    data-i18n="settings.unit_seconds">s</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.predial_label">TCP Pre-dial Timeout:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.predial_sub">Quick physical check of Server:Port connectivity to prune dead nodes in milliseconds</span>
+                                                            </div>
+                                                            <div class="input-unit-group">
+                                                                <input type="number" id="settings-tcp-timeout" value="3"
+                                                                    min="1" max="10"
+                                                                    class="form-input setting-input-sm" />
+                                                                <span class="unit-text"
+                                                                    data-i18n="settings.unit_seconds">s</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.pre_ping_label">Pre-ping Lightweight Probe (Fail-Fast):</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.pre_ping_sub">Fast handshake connectivity pre-check before deep benchmarks, pruning offline nodes immediately</span>
+                                                            </div>
+                                                            <input type="checkbox" id="settings-enable-pre-ping" checked
+                                                                class="setting-checkbox" />
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Group 2: Code Context Upload (Ingress Benchmark) -->
+                                                    <div class="settings-section-block">
+                                                        <div class="section-block-title"
+                                                            data-i18n="settings.group_ingress">🚀 Ingress Code Context Upload</div>
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.enable_ingress">Enable Ingress Bandwidth Test:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.enable_ingress_sub">Measures actual upload throughput for complex project contexts and files</span>
+                                                            </div>
+                                                            <input type="checkbox" id="settings-enable-ingress" checked
+                                                                class="setting-checkbox" />
+                                                        </div>
+
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.payload_size_label">Simulated Upload Payload Size:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.payload_size_sub">Larger payloads test sustained bandwidth; smaller payloads finish faster and save data</span>
+                                                            </div>
+                                                            <select id="settings-ingress-payload-size"
+                                                                class="form-input setting-select">
+                                                                <option value="131072"
+                                                                    data-i18n="settings.payload_128k">128 KB (Fast)
+                                                                </option>
+                                                                <option value="262144" selected
+                                                                    data-i18n="settings.payload_256k">256 KB (Recommended)
+                                                                </option>
+                                                                <option value="524288"
+                                                                    data-i18n="settings.payload_512k">512 KB (Medium Context)
+                                                                </option>
+                                                                <option value="1048576"
+                                                                    data-i18n="settings.payload_1024k">1024 KB (Large Files)
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Group 3: Anti-Buffering & Jitter Detection -->
+                                                    <div class="settings-section-block">
+                                                        <div class="section-block-title"
+                                                            data-i18n="settings.group_jitter">🛡️ Anti-Buffering & Jitter Detection</div>
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.jitter_label">Jitter Warning Threshold (Variance):</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.jitter_sub">Triggers "⚠️ Buffer Hijack" warning and applies a 30% penalty to overall score</span>
+                                                            </div>
+                                                            <select id="settings-jitter-threshold"
+                                                                class="form-input setting-select">
+                                                                <option value="80" data-i18n="settings.jitter_80ms">80 ms (Strict)</option>
+                                                                <option value="120" data-i18n="settings.jitter_120ms">120 ms (Agile)</option>
+                                                                <option value="150" selected
+                                                                    data-i18n="settings.jitter_150ms">150 ms (Standard)
+                                                                </option>
+                                                                <option value="200" data-i18n="settings.jitter_200ms">200 ms (Relaxed)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Group 4: Clash Policy Group Export Strategy -->
+                                                    <div class="settings-section-block">
+                                                        <div class="section-block-title"
+                                                            data-i18n="settings.group_clash">⚡ Clash / Mihomo Policy Export Rules
+                                                        </div>
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.top_n_label">Injected Top N Nodes in Policy Group:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.top_n_sub">Automatically injects top N nodes by score into exported policy groups</span>
+                                                            </div>
+                                                            <select id="settings-top-n"
+                                                                class="form-input setting-select">
+                                                                <option value="3" data-i18n="settings.top_3">Top 3 (Ultra Fast)</option>
+                                                                <option value="5" selected data-i18n="settings.top_5">Top 5 (Balanced)</option>
+                                                                <option value="8" data-i18n="settings.top_8">Top 8 (High Availability)</option>
+                                                                <option value="10" data-i18n="settings.top_10">Top 10 (Full Selection)</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.score_gate_label">Minimum Score Gate:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.score_gate_sub">Nodes below this score threshold are omitted to prevent faulty nodes</span>
+                                                            </div>
+                                                            <div class="input-unit-group">
+                                                                <input type="number" id="settings-min-score" value="50"
+                                                                    min="0" max="90"
+                                                                    class="form-input setting-input-sm" />
+                                                                <span class="unit-text"
+                                                                    data-i18n="settings.unit_points">pts</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Group 5: Notifications & Automation Preferences -->
+                                                    <div class="settings-section-block">
+                                                        <div class="section-block-title"
+                                                            data-i18n="settings.group_notice">🔔 Notifications & Automation</div>
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.auto_persist_label">Auto-Archive Benchmark Results:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.auto_persist_sub">Automatically save timeline snapshots to "📊 Historical Archives"</span>
+                                                            </div>
+                                                            <input type="checkbox" id="settings-auto-persist" checked
+                                                                class="setting-checkbox" />
+                                                        </div>
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.confirm_prompt_label">Show Outbound Tunnel Note Before Benchmark:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.confirm_prompt_sub">Displays independent tunnel and external proxy compatibility notice before starting</span>
+                                                            </div>
+                                                            <input type="checkbox" id="settings-show-benchmark-confirm"
+                                                                checked class="setting-checkbox" />
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Group 6: Test Logs & Diagnostics -->
+                                                    <div class="settings-section-block">
+                                                        <div class="section-block-title" data-i18n="settings.group_log">
+                                                            📋 Test Logs</div>
+                                                        <div class="setting-row">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.log_level_label">Test Log Output Level:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.log_level_sub">Controls verbosity of network probing details (DEBUG: full handshakes and packets, INFO: benchmark progress and scores)</span>
+                                                            </div>
+                                                            <select id="settings-log-level"
+                                                                class="form-input setting-select">
+                                                                <option value="DEBUG"
+                                                                    data-i18n="settings.log_level_debug">DEBUG (Most Verbose · Full handshakes & physical dial details)</option>
+                                                                <option value="INFO" selected
+                                                                    data-i18n="settings.log_level_info">INFO (Recommended · Benchmark progress & core results)</option>
+                                                                <option value="WARN"
+                                                                    data-i18n="settings.log_level_warn">WARN (Warnings only · Retries & degradation)</option>
+                                                                <option value="ERROR"
+                                                                    data-i18n="settings.log_level_error">ERROR (Errors only · Fatal failures)</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="setting-row"
+                                                            style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                                                            <div class="setting-row-text">
+                                                                <label class="setting-label"
+                                                                    data-i18n="settings.log_manage_label">Log File & Folder Management:</label>
+                                                                <span class="setting-sub"
+                                                                    data-i18n="settings.log_manage_sub">Open the log folder directly in native file manager (Finder / Explorer), or open the in-app log drawer</span>
+                                                            </div>
+                                                            <div
+                                                                style="display: flex; gap: 10px; width: 100%; margin-top: 4px; flex-wrap: wrap;">
+                                                                <button id="btn-open-log-dir" class="btn btn-primary"
+                                                                    type="button"
+                                                                    style="padding: 7px 16px; font-size: 0.82rem;"
+                                                                    data-i18n="settings.btn_open_log_dir">
+                                                                    📂 Open Log Folder
+                                                                </button>
+                                                                <button id="btn-open-runtime-log"
+                                                                    class="btn btn-secondary" type="button"
+                                                                    style="padding: 7px 16px; font-size: 0.82rem;"
+                                                                    data-i18n="settings.btn_view_test_log">
+                                                                    📋 View Test Logs
+                                                                </button>
+                                                                <button id="btn-copy-log-path" class="btn btn-outline"
+                                                                    type="button"
+                                                                    style="padding: 7px 16px; font-size: 0.82rem;"
+                                                                    data-i18n="settings.btn_copy_log_path">
+                                                                    📄 Copy Log Path
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Bottom Save & Action Toolbar -->
+                                                <div
+                                                    style="margin-top: 22px; display: flex; justify-content: flex-end; gap: 10px;">
+                                                    <button id="btn-save-settings" class="btn btn-primary" type="button"
+                                                        style="padding: 9px 24px;" data-i18n="settings.btn_save">
+                                                        💾 Save Global Preferences
+                                                    </button>
+                                                </div>
+                                            </div>

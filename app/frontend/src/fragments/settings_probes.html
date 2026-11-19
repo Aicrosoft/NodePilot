@@ -1,0 +1,295 @@
+                        <div class="settings-card probe-spec-card">
+                            <div class="card-header-flex">
+                                <h3 class="settings-card-title"
+                                    style="margin-bottom:0; padding-bottom:0; border-bottom:none;"
+                                    data-i18n="settings.probes_card_title">
+                                    🤖 Built-in AI IDE & LLM Service Probes
+                                </h3>
+                                <span class="badge"
+                                    style="background: rgba(16,185,129,0.12); color: var(--accent-green); font-size: 0.72rem;"
+                                    data-i18n="settings.probes_card_badge">
+                                    Asymmetric Polymorphic Probing
+                                </span>
+                            </div>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); margin: 8px 0 16px 0; line-height: 1.5;"
+                                data-i18n="settings.probes_card_desc">
+                                NodePilot analyzes application state machines to identify auth gateways, WAF challenges, and regional blocks beyond simple Ping:
+                            </p>
+
+                            <div class="probe-item-list">
+                                <!-- Probe 1: Google Antigravity -->
+                                <div class="probe-spec-table-box" data-probe-id="google-antigravity">
+                                    <div class="probe-spec-header">
+                                        <div class="probe-header-title">
+                                            <span class="probe-badge green">IDE Gateway</span>
+                                            <strong class="probe-name">Google Antigravity</strong>
+                                        </div>
+                                        <div class="probe-header-controls">
+                                            <div class="probe-input-wrap">
+                                                <input type="password" class="probe-key-input"
+                                                    id="probe-apikey-google-antigravity"
+                                                    placeholder="API Key / Token" autocomplete="off"
+                                                    spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_apikey" />
+                                                <button type="button" class="btn-toggle-key"
+                                                    title="Show / Hide Key" data-i18n-title="settings.probe_toggle_key">👁️</button>
+                                            </div>
+                                            <div class="probe-input-wrap">
+                                                <input type="text" class="probe-model-input"
+                                                    id="probe-model-google-antigravity"
+                                                    placeholder="Model (e.g. gemini-1.5-flash)" autocomplete="off"
+                                                    spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_model_gemini" />
+                                            </div>
+                                            <span class="probe-status-badge badge warn"
+                                                id="probe-status-google-antigravity" data-status="missing"
+                                                data-i18n="settings.probe_status_missing"
+                                                data-i18n-title="settings.probe_status_missing_tip"
+                                                title="⚠️ Missing API Key. Full stream TPS/Jitter test unavailable">⚠️ Missing Config</span>
+                                        </div>
+                                    </div>
+                                    <table class="probe-spec-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_endpoint">🌐 Probe Endpoint</td>
+                                                <td class="col-desc"><code class="probe-endpoint-inline">cloudcode-pa.googleapis.com</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_target">🎯 Target Scenario</td>
+                                                <td class="col-desc" data-i18n="settings.probe_antigravity_target">Google Cloud Code / Gemini Code Assist code generation and project context index gateway</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_state_machine">🔬 State Machine Mechanism</td>
+                                                <td class="col-desc" data-i18n="settings.probe_antigravity_state">GET sniffing; <code>200, 401, 403, 404</code> indicates reachable path; intercepts <code>blocked, access denied, region</code> keywords</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_metrics">📊 Core Metrics</td>
+                                                <td class="col-desc" data-i18n="settings.probe_antigravity_metrics">Gateway RTT (TTFB) + 256KB code payload simulated upload throughput (Ingress)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Probe 2: OpenAI / ChatGPT -->
+                                <div class="probe-spec-table-box" data-probe-id="openai">
+                                    <div class="probe-spec-header">
+                                        <div class="probe-header-title">
+                                            <span class="probe-badge blue">LLM API</span>
+                                            <strong class="probe-name">OpenAI / ChatGPT</strong>
+                                        </div>
+                                        <div class="probe-header-controls">
+                                            <div class="probe-input-wrap">
+                                                <input type="password" class="probe-key-input"
+                                                    id="probe-apikey-openai" placeholder="sk-..."
+                                                    autocomplete="off" spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_apikey" />
+                                                <button type="button" class="btn-toggle-key"
+                                                    title="Show / Hide Key" data-i18n-title="settings.probe_toggle_key">👁️</button>
+                                            </div>
+                                            <div class="probe-input-wrap">
+                                                <input type="text" class="probe-model-input"
+                                                    id="probe-model-openai" placeholder="Model (e.g. gpt-4o-mini)"
+                                                    autocomplete="off" spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_model_openai" />
+                                            </div>
+                                            <span class="probe-status-badge badge warn" id="probe-status-openai"
+                                                data-status="missing"
+                                                data-i18n="settings.probe_status_missing"
+                                                data-i18n-title="settings.probe_status_missing_tip"
+                                                title="⚠️ Missing API Key. Full stream TPS/Jitter test unavailable">⚠️ Missing Config</span>
+                                        </div>
+                                    </div>
+                                    <table class="probe-spec-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_endpoint">🌐 Probe Endpoint</td>
+                                                <td class="col-desc"><code class="probe-endpoint-inline">api.openai.com/v1/models</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_target">🎯 Target Scenario</td>
+                                                <td class="col-desc" data-i18n="settings.probe_openai_target">GPT-4o / o1-mini code completion, Codex, and streaming inference session</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_state_machine">🔬 State Machine Mechanism</td>
+                                                <td class="col-desc" data-i18n="settings.probe_openai_state">GET probe; <code>200, 401</code> indicates valid path; detects <code>cloudflare challenge</code> and <code>country/region/territory</code> restrictions</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_metrics">📊 Core Metrics</td>
+                                                <td class="col-desc" data-i18n="settings.probe_openai_metrics">TTFB + TTFT first token latency + SSE throughput (TPS) + 128KB Ingress upload</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Probe 3: Anthropic Claude -->
+                                <div class="probe-spec-table-box" data-probe-id="anthropic-claude">
+                                    <div class="probe-spec-header">
+                                        <div class="probe-header-title">
+                                            <span class="probe-badge purple">LLM API</span>
+                                            <strong class="probe-name">Anthropic Claude</strong>
+                                        </div>
+                                        <div class="probe-header-controls">
+                                            <div class="probe-input-wrap">
+                                                <input type="password" class="probe-key-input"
+                                                    id="probe-apikey-anthropic-claude"
+                                                    placeholder="sk-ant-..." autocomplete="off"
+                                                    spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_apikey" />
+                                                <button type="button" class="btn-toggle-key"
+                                                    title="Show / Hide Key" data-i18n-title="settings.probe_toggle_key">👁️</button>
+                                            </div>
+                                            <div class="probe-input-wrap">
+                                                <input type="text" class="probe-model-input"
+                                                    id="probe-model-anthropic-claude"
+                                                    placeholder="Model (e.g. claude-3-5-sonnet-20241022)"
+                                                    autocomplete="off" spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_model_claude" />
+                                            </div>
+                                            <span class="probe-status-badge badge warn"
+                                                id="probe-status-anthropic-claude" data-status="missing"
+                                                data-i18n="settings.probe_status_missing"
+                                                data-i18n-title="settings.probe_status_missing_tip"
+                                                title="⚠️ Missing API Key. Full stream TPS/Jitter test unavailable">⚠️ Missing Config</span>
+                                        </div>
+                                    </div>
+                                    <table class="probe-spec-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_endpoint">🌐 Probe Endpoint</td>
+                                                <td class="col-desc"><code class="probe-endpoint-inline">api.anthropic.com/v1/messages</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_target">🎯 Target Scenario</td>
+                                                <td class="col-desc" data-i18n="settings.probe_claude_target">Claude 3.5 Sonnet long-context code audit, Agent refactoring, and multi-file workflows</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_state_machine">🔬 State Machine Mechanism</td>
+                                                <td class="col-desc" data-i18n="settings.probe_claude_state">GET handshake; <code>200, 401, 405</code> indicates reachable (401 reaches Anthropic core auth layer); detects <code>restricted, blocked, cloudflare</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_metrics">📊 Core Metrics</td>
+                                                <td class="col-desc" data-i18n="settings.probe_claude_metrics">Network TTFB + 128KB payload upload speed + stream stall detection</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Probe 4: Google Gemini -->
+                                <div class="probe-spec-table-box" data-probe-id="google-gemini">
+                                    <div class="probe-spec-header">
+                                        <div class="probe-header-title">
+                                            <span class="probe-badge green">LLM API</span>
+                                            <strong class="probe-name">Google Gemini</strong>
+                                        </div>
+                                        <div class="probe-header-controls">
+                                            <div class="probe-input-wrap">
+                                                <input type="password" class="probe-key-input"
+                                                    id="probe-apikey-google-gemini"
+                                                    placeholder="AIzaSy..." autocomplete="off"
+                                                    spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_apikey" />
+                                                <button type="button" class="btn-toggle-key"
+                                                    title="Show / Hide Key" data-i18n-title="settings.probe_toggle_key">👁️</button>
+                                            </div>
+                                            <div class="probe-input-wrap">
+                                                <input type="text" class="probe-model-input"
+                                                    id="probe-model-google-gemini"
+                                                    placeholder="Model (e.g. gemini-1.5-flash)"
+                                                    autocomplete="off" spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_model_gemini" />
+                                            </div>
+                                            <span class="probe-status-badge badge warn"
+                                                id="probe-status-google-gemini" data-status="missing"
+                                                data-i18n="settings.probe_status_missing"
+                                                data-i18n-title="settings.probe_status_missing_tip"
+                                                title="⚠️ Missing API Key. Full stream TPS/Jitter test unavailable">⚠️ Missing Config</span>
+                                        </div>
+                                    </div>
+                                    <table class="probe-spec-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_endpoint">🌐 Probe Endpoint</td>
+                                                <td class="col-desc"><code class="probe-endpoint-inline">generativelanguage.googleapis.com</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_target">🎯 Target Scenario</td>
+                                                <td class="col-desc" data-i18n="settings.probe_gemini_target">Gemini 1.5 Pro / Flash 2M ultra-long context smart IDE assistant & multimodal analysis</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_state_machine">🔬 State Machine Mechanism</td>
+                                                <td class="col-desc" data-i18n="settings.probe_gemini_state">GET probe; <code>200, 401, 403, 404</code> indicates reachable path; intercepts <code>location is not supported</code> and <code>waf</code> keywords</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_metrics">📊 Core Metrics</td>
+                                                <td class="col-desc" data-i18n="settings.probe_gemini_metrics">First packet TTFB + 128KB upload throughput + connection reuse stability</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Probe 5: Cursor IDE Gateway -->
+                                <div class="probe-spec-table-box" data-probe-id="cursor">
+                                    <div class="probe-spec-header">
+                                        <div class="probe-header-title">
+                                            <span class="probe-badge yellow">IDE Gateway</span>
+                                            <strong class="probe-name">Cursor IDE Gateway</strong>
+                                        </div>
+                                        <div class="probe-header-controls">
+                                            <div class="probe-input-wrap">
+                                                <input type="password" class="probe-key-input"
+                                                    id="probe-apikey-cursor"
+                                                    placeholder="Token / Key" autocomplete="off"
+                                                    spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_apikey" />
+                                                <button type="button" class="btn-toggle-key"
+                                                    title="Show / Hide Key" data-i18n-title="settings.probe_toggle_key">👁️</button>
+                                            </div>
+                                            <div class="probe-input-wrap">
+                                                <input type="text" class="probe-model-input"
+                                                    id="probe-model-cursor"
+                                                    placeholder="Model (e.g. cursor-fast)"
+                                                    autocomplete="off" spellcheck="false"
+                                                    data-i18n-placeholder="settings.placeholder_model_cursor" />
+                                            </div>
+                                            <span class="probe-status-badge badge warn"
+                                                id="probe-status-cursor" data-status="missing"
+                                                data-i18n="settings.probe_status_missing"
+                                                data-i18n-title="settings.probe_status_missing_tip"
+                                                title="⚠️ Missing API Key. Full stream TPS/Jitter test unavailable">⚠️ Missing Config</span>
+                                        </div>
+                                    </div>
+                                    <table class="probe-spec-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_endpoint">🌐 Probe Endpoint</td>
+                                                <td class="col-desc"><code class="probe-endpoint-inline">api2.cursor.sh</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_target">🎯 Target Scenario</td>
+                                                <td class="col-desc" data-i18n="settings.probe_cursor_target">Cursor IDE Tab autocomplete, Composer multi-file editing, and Agent gateway</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_state_machine">🔬 State Machine Mechanism</td>
+                                                <td class="col-desc" data-i18n="settings.probe_cursor_state">GET pre-check; <code>200, 401, 403, 404</code> indicates reachable; inspects <code>blocked, forbidden</code> interruptions</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-item" data-i18n="settings.probe_col_metrics">📊 Core Metrics</td>
+                                                <td class="col-desc" data-i18n="settings.probe_cursor_metrics">Instantaneous TTFB + Proxy Buffering detection + Jitter variance</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Probe specs footer: save & benchmark notes -->
+                            <div class="probe-spec-footer">
+                                <span class="probe-spec-footer-tip" data-i18n="settings.probe_footer_tip">
+                                    💡 Tip: Configuring API Keys unlocks full LLM stream inference, TPS & Jitter benchmark. Keyless mode conducts basic gateway connectivity probes only.
+                                </span>
+                                <button id="btn-save-probes" class="btn btn-primary" type="button"
+                                    style="padding: 8px 22px; font-size: 0.82rem;"
+                                    data-i18n="settings.btn_save_probes">
+                                    💾 Save Probe Keys & Models
+                                </button>
+                            </div>
+                        </div>

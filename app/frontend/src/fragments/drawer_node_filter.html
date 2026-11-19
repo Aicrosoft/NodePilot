@@ -1,0 +1,164 @@
+<!-- Slide-over Drawer: Node regex filter configuration (Positive Include / Negative Exclude) -->
+<div id="modal-node-filter" class="drawer-overlay hidden" style="z-index: 10004;">
+    <div class="drawer-backdrop" id="filter-backdrop"></div>
+
+    <!-- Independent Rule Library management panel sliding out from left (Adjacent to main drawer, supports CRUD & click-to-apply) -->
+    <div id="filter-library-panel" class="filter-library-panel">
+        <div class="filter-library-header">
+            <div class="filter-library-title">
+                <span data-i18n="filter.library_title">📚 Filter Rule Library</span>
+                <span class="filter-library-badge" id="filter-library-count">10</span>
+            </div>
+            <div style="display: flex; gap: 6px; align-items: center;">
+                <button id="filter-library-btn-add" class="btn btn-primary btn-xs" type="button"
+                    title="Create custom filter rule" data-i18n="filter.btn_add_rule" data-i18n-title="filter.btn_add_rule_title">
+                    ＋ Add Rule
+                </button>
+                <button id="filter-library-btn-close" class="btn-close" type="button"
+                    title="Close rule library panel" data-i18n-title="filter.btn_close_library">×</button>
+            </div>
+        </div>
+
+        <!-- Quick search & save as new rule toolbar -->
+        <div class="filter-library-toolbar">
+            <div style="position: relative; flex: 1;">
+                <input type="text" id="filter-library-search" class="form-input"
+                    placeholder="🔍 Search rule name, region or keywords..."
+                    data-i18n-placeholder="filter.search_placeholder"
+                    style="width: 100%; font-size: 0.78rem; padding: 5px 8px;" />
+            </div>
+            <button id="filter-library-btn-save-current" class="btn btn-secondary btn-xs" type="button"
+                title="Quickly save current regexes to rule library"
+                data-i18n="filter.btn_save_current"
+                data-i18n-title="filter.btn_save_current_title"
+                style="white-space: nowrap; font-size: 0.75rem;">
+                💾 Save as New Rule
+            </button>
+        </div>
+
+        <!-- Add / Edit Rule inline form (hidden by default) -->
+        <div id="filter-library-form-box" class="filter-library-form hidden">
+            <div class="filter-form-title">
+                <span id="filter-library-form-title" data-i18n="filter.form_edit_title">✏️ Edit Rule</span>
+            </div>
+            <input type="hidden" id="filter-form-rule-id" value="" />
+            <div class="filter-form-row">
+                <label class="filter-form-label" data-i18n="filter.form_label_name">Rule Name *</label>
+                <input type="text" id="filter-form-name" class="form-input form-input-sm"
+                    placeholder="e.g. 🇬🇧 UK Low Latency Direct" data-i18n-placeholder="filter.form_name_placeholder" />
+            </div>
+            <div class="filter-form-row">
+                <label class="filter-form-label" data-i18n="filter.form_label_include">Include Regex</label>
+                <input type="text" id="filter-form-include" class="form-input form-input-sm"
+                    placeholder="e.g. (UK|London|Britain)" data-i18n-placeholder="filter.form_include_placeholder" style="font-family: monospace;" />
+            </div>
+            <div class="filter-form-row">
+                <label class="filter-form-label" data-i18n="filter.form_label_exclude">Exclude Regex</label>
+                <input type="text" id="filter-form-exclude" class="form-input form-input-sm"
+                    placeholder="e.g. (0\.1x|invalid|expired)" data-i18n-placeholder="filter.form_exclude_placeholder" style="font-family: monospace;" />
+            </div>
+            <div class="filter-form-row">
+                <label class="filter-form-label" data-i18n="filter.form_label_desc">Rule Description (Optional)</label>
+                <input type="text" id="filter-form-desc" class="form-input form-input-sm"
+                    placeholder="Brief description of matching characteristics and use cases" data-i18n-placeholder="filter.form_desc_placeholder" />
+            </div>
+            <div class="filter-form-actions">
+                <button type="button" id="filter-form-btn-cancel" class="btn btn-secondary btn-xs" data-i18n="filter.btn_cancel">Cancel</button>
+                <button type="button" id="filter-form-btn-save" class="btn btn-primary btn-xs" data-i18n="filter.btn_save_rule">Save Rule</button>
+            </div>
+        </div>
+
+        <!-- Rule library list container -->
+        <div class="filter-library-body">
+            <div id="filter-library-list" class="filter-library-list"></div>
+        </div>
+
+        <!-- Rule library footer toolbar: restore default presets -->
+        <div class="filter-library-footer">
+            <span style="font-size: 0.7rem; color: var(--text-muted);" data-i18n="filter.library_click_tip">Click any item to quickly apply</span>
+            <button id="filter-library-btn-reset-default" class="btn btn-link btn-xs" type="button"
+                data-i18n="filter.btn_reset_default"
+                style="color: var(--text-muted); font-size: 0.72rem; padding: 0; text-decoration: underline;">
+                🔄 Restore Default Presets
+            </button>
+        </div>
+    </div>
+
+    <!-- Right main drawer: Node regex configuration and real-time preview -->
+    <div class="drawer-panel drawer-right">
+        <div class="drawer-header">
+            <h3 id="filter-modal-title" class="drawer-title" data-i18n="filter.modal_title">
+                🎯 Node Filter Rules (Include / Exclude Regex)
+            </h3>
+            <button id="filter-modal-close" class="btn-close" title="Close drawer and return to subscriptions" data-i18n-title="filter.btn_close_drawer">×</button>
+        </div>
+        <div class="drawer-body">
+            <div class="filter-field">
+                <label class="filter-label"
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <span style="font-weight: 600; color: var(--accent-green); font-size: 0.85rem;" data-i18n="filter.label_include">🟢 Positive Include Regex</span>
+                    <span style="font-size: 0.73rem; color: var(--text-muted);" data-i18n="filter.sub_include">Keep nodes matching this regex only (blank for unlimited)</span>
+                </label>
+                <input type="text" id="filter-include-input" placeholder="e.g. (HK|JP|US|SG|Hong Kong|Japan)"
+                    data-i18n-placeholder="filter.placeholder_include"
+                    class="form-input"
+                    style="width: 100%; font-family: monospace;" />
+            </div>
+
+            <div class="filter-field">
+                <label class="filter-label"
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <span style="font-weight: 600; color: var(--accent-red); font-size: 0.85rem;" data-i18n="filter.label_exclude">🔴 Negative Exclude Regex</span>
+                    <span style="font-size: 0.73rem; color: var(--text-muted);" data-i18n="filter.sub_exclude">Exclude nodes matching this regex (blank for none)</span>
+                </label>
+                <input type="text" id="filter-exclude-input" placeholder="e.g. (invalid|expired|remaining|official|0\.1x|notice)"
+                    data-i18n-placeholder="filter.placeholder_exclude"
+                    class="form-input" style="width: 100%; font-family: monospace;" />
+            </div>
+
+            <div class="filter-controls-bar">
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button id="filter-btn-library-toggle" class="btn btn-secondary btn-xs filter-library-btn" type="button"
+                        title="Expand/collapse rule library (apply, add, edit, delete rules)"
+                        data-i18n="filter.btn_library"
+                        data-i18n-title="filter.btn_library_title">
+                        📚 Rule Library
+                    </button>
+                    <button id="filter-btn-reset" class="btn btn-secondary btn-xs filter-reset-btn" type="button"
+                        title="Clear positive include and negative exclude regex rules"
+                        data-i18n="filter.btn_clear_rules"
+                        data-i18n-title="filter.btn_clear_rules_title">
+                        🗑️ Clear Rules
+                    </button>
+                </div>
+                <label class="checkbox-label" style="font-size: 0.8rem; margin-bottom: 0;">
+                    <input type="checkbox" id="filter-case-insensitive" checked />
+                    <span data-i18n="filter.case_insensitive">Case-Insensitive</span>
+                </label>
+            </div>
+
+            <div id="filter-error-msg" class="diag-alert hidden" style="padding: 6px 12px; font-size: 0.8rem;">
+            </div>
+
+            <!-- Node preview section utilizing full vertical depth on right -->
+            <div class="drawer-preview-section">
+                <div class="preview-section-title" data-i18n="filter.preview_title">Real-time Matched Kept & Excluded Nodes Preview:</div>
+                <div class="filter-preview-box drawer-preview-list-box">
+                    <div id="filter-preview-list" style="display: flex; flex-direction: column; gap: 5px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drawer-footer">
+            <div id="filter-preview-count"
+                data-i18n="filter.preview_count_default"
+                style="font-size: 0.82rem; font-weight: 600; color: var(--accent-secondary);">
+                Kept: - / - nodes
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button id="filter-btn-cancel" class="btn btn-secondary" type="button" data-i18n="filter.btn_cancel">Cancel</button>
+                <button id="filter-btn-save" class="btn btn-primary" type="button" data-i18n="filter.btn_save_apply">Save & Apply</button>
+            </div>
+        </div>
+    </div>
+</div>

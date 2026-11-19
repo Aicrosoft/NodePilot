@@ -1,0 +1,16 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "NodePilot",
+  "outputfilename": "NodePilot",
+  "wailsjsdir": "./frontend",
+  "author": {
+    "name": "Fisher",
+    "email": "fisher@aicro.net"
+  },
+  "info": {
+    "companyName": "Aicrosoft",
+    "productName": "NodePilot",
+    "productVersion": "0.1.26111501",
+    "copyright": "Copyright © 2026 Aicrosoft. All rights reserved."
+  }
+}
