@@ -137,7 +137,7 @@ jobs:
       - name: Install Linux Build Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev || sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev build-essential pkg-config
 
       - name: Setup Go Environment
         uses: actions/setup-go@v5
@@ -161,7 +161,7 @@ jobs:
       - name: Compile and Archive Linux Application
         run: |
           cd app
-          wails build -platform linux/amd64 -s
+          wails build -platform linux/amd64 -tags webkit2_41 -s || wails build -platform linux/amd64 -s
           tar -czvf NodePilot-Linux-amd64.tar.gz -C build/bin NodePilot
 
       - name: Upload Linux Artifact
